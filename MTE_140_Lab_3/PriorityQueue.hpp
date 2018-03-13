@@ -57,7 +57,7 @@ private:
   // Current number of items in heap_. Remember, we don't use the first element
   // (i.e. index 0) of heap_.
   unsigned int size_;
-  
+
 private:
   // Override copy constructor and assignment operator in private so we can't
   // use them.

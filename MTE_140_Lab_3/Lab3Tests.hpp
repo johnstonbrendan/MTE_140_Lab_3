@@ -49,7 +49,6 @@ public:
     ASSERT_TRUE( q.enqueue(4) );
     ASSERT_TRUE( q.max() == 5 );
     ASSERT_TRUE( q.full() );
-
     ASSERT_TRUE( !q.enqueue(7) );
     ASSERT_TRUE( q.max() == 5 );
     ASSERT_TRUE( q.full() );
