@@ -54,6 +54,7 @@ public:
   // as in-order, level-order, etc. might be the most useful for debugging
   // purposes.
   void print() const;
+  bool isLeaf(Node* checkNode) const;
   
 private:
   // Optional function.

@@ -105,5 +105,4 @@ void PriorityQueue::print() const
 	for (int i = 1; i <= size_; i++)
 		cout << heap_[i] << endl;
 }
-// Implement the functions here.
 
