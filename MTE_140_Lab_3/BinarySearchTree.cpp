@@ -92,7 +92,7 @@ bool BinarySearchTree::remove(DataType val)
 	}
 	Node* removeNode = root_;
 	Node* parent = nullptr;
-	bool found = true, go_right = false;// make go right 1 if you want to go right
+	bool found = false, go_right = false;// make go right 1 if you want to go right
 	while (!found)
 	{
 		if (val == removeNode->val)
@@ -243,26 +243,42 @@ unsigned int BinarySearchTree::depth() const
 	//level by level this may be easier
 	//keep track when you go into a level and then continue comparing
 	Node* queue[size_];
-	int p_index = 0, i_index = 1;
+	Node* next_depth = root_;
+	int p_index = 0, i_index = 1, depth = 0;
+	bool n_level = false;
 	queue[0] = root_;
 	cout << "now printing" << endl;
 	for (; p_index < size_; p_index++)
 	{
-		cout << queue[p_index]->val << endl;
+		if (queue[p_index] == next_depth)
+		{
+			n_level = true;
+			depth++;
+		}
 		if (queue[p_index]->left != nullptr)
 		{
 			queue[i_index] = queue[p_index]->left;
 			i_index++;
+			if(n_level)
+			{
+				next_depth = queue[i_index - 1];
+				n_level = false;
+			}
 //			cout << "inserted " << queue[i_index-1]->val << " at index " << i_index-1 << endl;
 		}
 		if (queue[p_index]->right != nullptr)
 		{
 			queue[i_index] = queue[p_index]->right;
 			i_index++;
+			if(n_level)
+			{
+				next_depth = queue[i_index - 1];
+				n_level = false;
+			}
 //			cout << "inserted " << queue[i_index-1]->val << " at index " << i_index-1 << endl;
 		}
 	}
-	return false;
+	return depth;
 }
 
 void BinarySearchTree::print() const

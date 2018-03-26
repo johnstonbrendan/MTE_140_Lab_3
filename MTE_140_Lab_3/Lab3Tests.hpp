@@ -137,10 +137,8 @@ public:
     ASSERT_TRUE(bst.size() == 2);
     ASSERT_TRUE(bst.insert(6));
     ASSERT_TRUE(bst.size() == 3);
-
     ASSERT_TRUE(bst.remove(8));
     ASSERT_TRUE(bst.size() == 2);
-    
     std::string tree_level_order = level_order(bst.root_);
     // Compare the tree's representation to the expected tree.
     ASSERT_TRUE(tree_level_order.compare(expected_tree_level_order) == 0)
