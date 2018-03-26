@@ -29,7 +29,7 @@ public:
   ~BinarySearchTree();
   
   // Inserts value "val" into the tree. Returns false if failed (i.e., "val"
-  // already exists in the tree), and true otherwise.
+  // already exists in the tree, and true otherwise.
   bool insert(DataType val);
   // Removes the node with value "val" from the tree. Returns true if successful,
   // false otherwise.
@@ -54,7 +54,6 @@ public:
   // as in-order, level-order, etc. might be the most useful for debugging
   // purposes.
   void print() const;
-  bool isLeaf(Node* checkNode) const;
   
 private:
   // Optional function.
