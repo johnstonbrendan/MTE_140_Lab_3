@@ -40,6 +40,11 @@ BinarySearchTree::~BinarySearchTree()
 		delete queue[p_index];
 		queue[p_index] = nullptr;
 	}
+//	better destructor :/
+//	for (DataType i = min(); i <= max(); i++)
+//	{
+//		remove(i);
+//	}
 }
 
 bool BinarySearchTree::insert(DataType val)
@@ -174,7 +179,8 @@ bool BinarySearchTree::remove(DataType val)
 		}
 		else
 		{
-			parent->right = nullptr;
+//			parent->right = nullptr;
+			parent->right = successor->left;
 		}
 		delete successor;
 		successor = nullptr;
@@ -307,3 +313,11 @@ void BinarySearchTree::print() const
 	cout << "end print" << endl;
 }
 
+int BinarySearchTree::getNodeDepth(BinarySearchTree::Node* n) const
+{
+	if (n == nullptr)
+	{
+		return 0;
+	}
+	return std::max(getNodeDepth(n->left), getNodeDepth(n->right));
+}

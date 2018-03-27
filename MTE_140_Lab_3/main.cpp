@@ -11,7 +11,7 @@ string get_status_str(bool status)
     return status ? "Pass" : "Fail";
 }
 
-int main()
+int main(int argc, char *argv[])
 {
     PriorityQueueTest pqueue_test;
     BinarySearchTreeTest btree_test;
@@ -32,7 +32,7 @@ int main()
     cout << "Test1: " << get_status_str(btree_test1_passed) << endl;
     cout << "Test2: " << get_status_str(btree_test2_passed) << endl;
     cout << "Test3: " << get_status_str(btree_test3_passed) << endl;
-
+//
 //	PriorityQueue pqueue_sub(16);
 //	pqueue_sub.enqueue(3);
 //	pqueue_sub.print();
@@ -52,8 +52,8 @@ int main()
 //		cout << "insert failed" << endl;
 //	}
 //	btree_sub.remove(12); //TODO: check more check when the remove has two children that are both leafs
-	//and check removing ones with a lot of children
-	//and check removing root_
+//	//and check removing ones with a lot of children
+//	//and check removing root_
 //	btree_sub.remove(3);
 //	btree_sub.print();
 //	int value = 12;
@@ -61,10 +61,16 @@ int main()
 //		cout << value << " already exists" << endl;
 //	else
 //		cout << value << " doesn't exist" << endl;
+//	btree_sub.print();
 //	cout << btree_sub.max() << " is max" << endl;
 //	cout << btree_sub.min() << " is min" << endl;
 //	cout << btree_sub.depth() << " is the max depth" << endl;
+//	cout << btree_sub.getNodeDepth(btree_sub.root_) << " is the depth from root" << endl;
+//
 
-
+//	for (int i = 1; i < argc; i++)
+//	{
+//		btree_sub.insert((int)argv[i]);
+//	} // doesn't work as the argv[i] is not a simple character but a weird pointer thing
     system("pause");
 }

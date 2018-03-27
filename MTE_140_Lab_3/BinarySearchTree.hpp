@@ -54,12 +54,14 @@ public:
   // as in-order, level-order, etc. might be the most useful for debugging
   // purposes.
   void print() const;
+  int getNodeDepth(Node* n) const;
+
   
 private:
   // Optional function.
   // Recursively get the maximum depth from a given node. Call on root_ first.
   // This might be of great value to you in depth().
-  int getNodeDepth(Node* n) const;
+//  int getNodeDepth(Node* n) const;
   
 private:
   // Pointer to the root node.
