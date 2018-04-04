@@ -28,6 +28,7 @@ bool PriorityQueue::enqueue(DataType val)
 	size_++;
 	DataType swap = val;
 	heap_[size_] = val;
+	heap_[0] = val + 1; // in order to prevent from the zero index from being used
 	for (int i = size_; i >= 1;)
 	{
 		if (heap_[i/2] < heap_[i])
@@ -53,16 +54,18 @@ bool PriorityQueue::dequeue()
 	}
 	heap_[1] = heap_[size_];
 	size_--;
-	for (int i = 1; i <= size_;)
+	for (int i = 1; 2*i <= size_;)
 	{
-		if (heap_[i] <= heap_[2*i])
+		if (2*i + 1 > size_)
+			break;
+		if ((heap_[i] <= heap_[2*i]) && (heap_[2*i] > heap_[2*i + 1]))
 		{
 			swap = heap_[2*i];
 			heap_[2*i] = heap_[i];
 			heap_[i] = swap;
 			i = 2*i;
 		}
-		else if (heap_[i] <= heap_[2*i + 1])
+		else if (heap_[i] <= heap_[2*i])
 		{
 			swap = heap_[2*i + 1];
 			heap_[2*i + 1] = heap_[i];
@@ -70,7 +73,9 @@ bool PriorityQueue::dequeue()
 			i = 2*i + 1;
 		}
 		else
+		{
 			break;
+		}
 	}
 	return true;
 }
