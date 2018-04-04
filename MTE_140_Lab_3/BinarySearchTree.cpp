@@ -95,6 +95,13 @@ bool BinarySearchTree::remove(DataType val)
 	{
 		return false;
 	}
+	if (size_ == 1)
+	{
+		delete root_;
+		root_ = nullptr;
+		size_--;
+		return true;
+	}
 	Node* removeNode = root_;
 	Node* parent = nullptr;
 	bool found = false, go_right = false;// make go right 1 if you want to go right
@@ -117,7 +124,7 @@ bool BinarySearchTree::remove(DataType val)
 			removeNode = removeNode->left;
 		}
 	}
-	cout << "value to remove is: " << removeNode->val << endl;
+//	cout << "value to remove is: " << removeNode->val << endl;
 	if (removeNode->left == nullptr && removeNode->right == nullptr)
 	{
 		if (go_right)
@@ -253,7 +260,7 @@ unsigned int BinarySearchTree::depth() const
 	int p_index = 0, i_index = 1, depth = 0;
 	bool n_level = false;
 	queue[0] = root_;
-	cout << "now printing" << endl;
+//	cout << "now printing" << endl;
 	for (; p_index < size_; p_index++)
 	{
 		if (queue[p_index] == next_depth)
