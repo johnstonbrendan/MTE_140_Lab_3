@@ -257,7 +257,7 @@ unsigned int BinarySearchTree::depth() const
 	//keep track when you go into a level and then continue comparing
 	Node* queue[size_];
 	Node* next_depth = root_;
-	int p_index = 0, i_index = 1, depth = 0;
+	int p_index = 0, i_index = 1, depth = -1; //so it counts root as depth 0
 	bool n_level = false;
 	queue[0] = root_;
 //	cout << "now printing" << endl;

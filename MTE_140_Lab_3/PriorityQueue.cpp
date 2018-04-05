@@ -54,18 +54,19 @@ bool PriorityQueue::dequeue()
 	}
 	heap_[1] = heap_[size_];
 	size_--;
+	bool one_child = false;
 	for (int i = 1; 2*i <= size_;)
 	{
 		if (2*i + 1 > size_)
-			break;
-		if ((heap_[i] <= heap_[2*i]) && (heap_[2*i] > heap_[2*i + 1]))
+			one_child = true;
+		if ((heap_[i] <= heap_[2*i]) && ((heap_[2*i] > heap_[2*i + 1]) || one_child))
 		{
 			swap = heap_[2*i];
 			heap_[2*i] = heap_[i];
 			heap_[i] = swap;
 			i = 2*i;
 		}
-		else if (heap_[i] <= heap_[2*i])
+		else if ((!one_child) && heap_[i] <= heap_[2*i+1])
 		{
 			swap = heap_[2*i + 1];
 			heap_[2*i + 1] = heap_[i];
