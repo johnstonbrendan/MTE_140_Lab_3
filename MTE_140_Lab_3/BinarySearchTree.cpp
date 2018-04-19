@@ -103,7 +103,7 @@ bool BinarySearchTree::remove(DataType val)
 		return true;
 	}
 	Node* removeNode = root_;
-	Node* parent = nullptr;
+	Node* parent = root_; //CHANGED THIS LINE LATER
 	bool found = false, go_right = false;// make go right 1 if you want to go right
 	while (!found)
 	{
@@ -135,13 +135,16 @@ bool BinarySearchTree::remove(DataType val)
 		{
 			parent->left = nullptr;
 		}
-		delete removeNode;
-		removeNode = nullptr;
 //			cout << "it is a leaf" << endl;
 	}
 	else if (removeNode->left != nullptr && removeNode->right == nullptr)
 	{
-		if (go_right)
+		if (removeNode == root_)
+		{
+			go_right = false;
+			root_ = root_->left;
+		}
+		else if (go_right)
 		{
 			parent->right = removeNode->left;
 		}
@@ -149,12 +152,15 @@ bool BinarySearchTree::remove(DataType val)
 		{
 			parent->left = removeNode->left;
 		}
-		delete removeNode;
-		removeNode = nullptr;
 	}
 	else if (removeNode->right != nullptr && removeNode->left == nullptr)
 	{
-		if (go_right)
+		if (removeNode == root_)
+		{
+			go_right = true;
+			root_ = root_->right;
+		}
+		else if (go_right)
 		{
 			parent->right = removeNode->right;
 		}
@@ -162,37 +168,56 @@ bool BinarySearchTree::remove(DataType val)
 		{
 			parent->left = removeNode->right;
 		}
-		delete removeNode;
-		removeNode = nullptr;
 	}
 	else //this case is when node is not a parent to a leaf or is not a leaf itself
 	{//replace with successor
 		Node* successor = removeNode->left;
+		Node* s_parent = removeNode;
 //			cout << removeNode->val;
 //			system("pause");
 		while (successor->right != nullptr)
 		{
-			parent = successor;
+			s_parent = successor;
 			successor = successor->right;
 		}
 //			cout << "remove the value: " <<removeNode->val << " and replace with: " << successor->val << endl;
 //			system("pause");
-		removeNode->val = successor->val;
-		//below check is important incase that there are only two children
-		//and both are leafs, thus the left one should be choosen not the right
-		if (removeNode->left->right == nullptr)
+		if (removeNode == root_)
 		{
-			removeNode->left = successor->left;
+			root_ = successor;
+		}
+		else if (go_right)
+		{
+			parent->right = successor;
 		}
 		else
 		{
-//			parent->right = nullptr;
-			parent->right = successor->left;
+			parent->left = successor;
 		}
-		delete successor;
+		//below check is important incase that there are only two children
+		//and both are leafs, thus the left one should be choosen not the right
+		if ((s_parent != root_) && (removeNode->left->right != nullptr))
+		{
+			s_parent->right = successor->left;
+			successor->left = removeNode->left;
+//			removeNode->left = successor->left;
+		}
+		else if(removeNode->left->right == nullptr)
+		{
+			successor->left = removeNode->left->left;
+		}
+		successor->right = removeNode->right;
+//		else
+//		{
+////			parent->right = nullptr;
+//			s_parent->right = successor->left;
+//		}
+		s_parent = nullptr;
 		successor = nullptr;
-		removeNode = nullptr;
 	}
+//	if (removeNode != root_)
+		delete removeNode;
+	removeNode = nullptr;
 	parent = nullptr;
 	size_--;
 	return true;

@@ -4,7 +4,7 @@ using namespace std;
 
 #include "Lab3Tests.hpp"
 //#include "PriorityQueue.hpp" //TODO: get rid of this line 	;LASDKDJ
-//#include "BinarySearchTree.hpp" //TODO: get rid of this as well
+#include "BinarySearchTree.hpp" //TODO: get rid of this as well
 
 string get_status_str(bool status)
 {
@@ -32,6 +32,33 @@ int main(int argc, char *argv[])
     cout << "Test1: " << get_status_str(btree_test1_passed) << endl;
     cout << "Test2: " << get_status_str(btree_test2_passed) << endl;
     cout << "Test3: " << get_status_str(btree_test3_passed) << endl;
+
+    cout << "\n\nExtra stuff\n";
+    BinarySearchTree btree;
+    for (int i = 1; i <= 10; i++)
+    	btree.insert(i);
+    btree.print();
+//    btree.insert(0);
+//    btree.print();
+//    btree.insert(-3);
+//    btree.insert(-2);
+//    btree.insert(-4);
+//    btree.insert(0);
+////    btree.insert ()
+//    btree.remove(1);
+////    btree.remove(2);
+//    btree.print();
+//    btree.remove(0);
+//    btree.print();
+//    btree.remove()
+    for (int i = 1; i <= 11; i++)
+    	{
+    		if(btree.remove(i))
+    			cout << "removed: " << i << endl;
+    		else
+    			cout << i << " was not removed" << endl;
+    	}
+    btree.print();
 //
 //	PriorityQueue pqueue_sub(16);
 //	pqueue_sub.enqueue(3);
