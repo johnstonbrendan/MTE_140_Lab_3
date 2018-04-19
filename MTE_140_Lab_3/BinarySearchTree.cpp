@@ -170,50 +170,50 @@ bool BinarySearchTree::remove(DataType val)
 		}
 	}
 	else //this case is when node is not a parent to a leaf or is not a leaf itself
-	{//replace with successor
-		Node* successor = removeNode->left;
+	{//replace with predecessor
+		Node* predecessor = removeNode->left;
 		Node* s_parent = removeNode;
 //			cout << removeNode->val;
 //			system("pause");
-		while (successor->right != nullptr)
+		while (predecessor->right != nullptr)
 		{
-			s_parent = successor;
-			successor = successor->right;
+			s_parent = predecessor;
+			predecessor = predecessor->right;
 		}
-//			cout << "remove the value: " <<removeNode->val << " and replace with: " << successor->val << endl;
+//			cout << "remove the value: " <<removeNode->val << " and replace with: " << predecessor->val << endl;
 //			system("pause");
 		if (removeNode == root_)
 		{
-			root_ = successor;
+			root_ = predecessor;
 		}
 		else if (go_right)
 		{
-			parent->right = successor;
+			parent->right = predecessor;
 		}
 		else
 		{
-			parent->left = successor;
+			parent->left = predecessor;
 		}
 		//below check is important incase that there are only two children
 		//and both are leafs, thus the left one should be choosen not the right
 		if ((s_parent != root_) && (removeNode->left->right != nullptr))
 		{
-			s_parent->right = successor->left;
-			successor->left = removeNode->left;
-//			removeNode->left = successor->left;
+			s_parent->right = predecessor->left;
+			predecessor->left = removeNode->left;
+//			removeNode->left = predecessor->left;
 		}
 		else if(removeNode->left->right == nullptr)
 		{
-			successor->left = removeNode->left->left;
+			predecessor->left = removeNode->left->left;
 		}
-		successor->right = removeNode->right;
+		predecessor->right = removeNode->right;
 //		else
 //		{
 ////			parent->right = nullptr;
-//			s_parent->right = successor->left;
+//			s_parent->right = predecessor->left;
 //		}
 		s_parent = nullptr;
-		successor = nullptr;
+		predecessor = nullptr;
 	}
 //	if (removeNode != root_)
 		delete removeNode;

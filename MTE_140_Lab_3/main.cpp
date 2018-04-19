@@ -4,7 +4,7 @@ using namespace std;
 
 #include "Lab3Tests.hpp"
 //#include "PriorityQueue.hpp" //TODO: get rid of this line 	;LASDKDJ
-#include "BinarySearchTree.hpp" //TODO: get rid of this as well
+//#include "BinarySearchTree.hpp" //TODO: get rid of this as well
 
 string get_status_str(bool status)
 {
@@ -33,11 +33,11 @@ int main(int argc, char *argv[])
     cout << "Test2: " << get_status_str(btree_test2_passed) << endl;
     cout << "Test3: " << get_status_str(btree_test3_passed) << endl;
 
-    cout << "\n\nExtra stuff\n";
-    BinarySearchTree btree;
-    for (int i = 1; i <= 10; i++)
-    	btree.insert(i);
-    btree.print();
+//    cout << "\n\nExtra stuff\n";
+//    BinarySearchTree btree;
+//    for (int i = 1; i <= 10; i++)
+//    	btree.insert(i);
+//    btree.print();
 //    btree.insert(0);
 //    btree.print();
 //    btree.insert(-3);
@@ -51,14 +51,14 @@ int main(int argc, char *argv[])
 //    btree.remove(0);
 //    btree.print();
 //    btree.remove()
-    for (int i = 1; i <= 11; i++)
-    	{
-    		if(btree.remove(i))
-    			cout << "removed: " << i << endl;
-    		else
-    			cout << i << " was not removed" << endl;
-    	}
-    btree.print();
+//    for (int i = 1; i <= 11; i++)
+//    	{
+//    		if(btree.remove(i))
+//    			cout << "removed: " << i << endl;
+//    		else
+//    			cout << i << " was not removed" << endl;
+//    	}
+//    btree.print();
 //
 //	PriorityQueue pqueue_sub(16);
 //	pqueue_sub.enqueue(3);
